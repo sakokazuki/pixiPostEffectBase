@@ -1,4 +1,6 @@
 import Test from './filters/Test.js';
+import TweenMax from '../../../node_modules/gsap/src/minified/TweenMax.min.js';
+
 
 export default class Canvas {
   constructor() {
@@ -8,9 +10,12 @@ export default class Canvas {
     this.renderer = new PIXI.autoDetectRenderer(this.width, this.height, { transparent: true });
     document.getElementById("pixiview").appendChild(this.renderer.view);
 
+    this.circle = new Object();
+    this.circle.r = 0;
+
     this.stage = new PIXI.Container();
     PIXI.loader
-      .add('../img/black.png')
+      .add('./img/black.png')
       .load(this.loadComplete.bind(this))
   }
 
@@ -31,9 +36,10 @@ export default class Canvas {
     }
 
 
-    this.bg = PIXI.Sprite.fromImage('../img/bg.jpg');
+    this.bg = PIXI.Sprite.fromImage('./img/bg.jpg');
     this.bg.width = this.width;
     this.bg.height = this.height;
+
     this.bg.interaction = false;
     this.stage.addChild(this.bg);
 
@@ -41,6 +47,12 @@ export default class Canvas {
     this.stage.filters = [this.f];
     this.f.uniforms.resolution = [this.width, this.height];
     this.animate();
+
+    $('#pixiview').on('click', ()=>{
+        TweenMax.fromTo(this.f.uniforms, 2, 
+          {radius: 0.0},
+          {radius: 2.0,  ease: Circ.easeOut});
+    });
   }
 
 
@@ -50,6 +62,9 @@ export default class Canvas {
     //マウスの位置をシェーダーに渡す。
     let point = this.renderer.plugins.interaction.mouse.global;
     this.f.uniforms.mouse = [point.x, point.y];
+
+
+
 
     requestAnimationFrame(this.animate.bind(this)); 
   }
