@@ -24,7 +24,7 @@ export default class Canvas {
       var h = window.innerHeight;
 
       //画面幅をシェーダーにわたす。 
-      // this.f.uniforms.resolution.value = [w, h];
+      this.f.uniforms.resolution.value = [w, h];
       r.resize(w,h);
       this.bg.width = w;
       this.bg.height = h;
@@ -37,9 +37,9 @@ export default class Canvas {
     this.bg.interaction = false;
     this.stage.addChild(this.bg);
 
-    // this.f = new Test();
-    // this.stage.filters = [this.f];
-    // this.f.uniforms.resolution = [this.width, this.height];
+    this.f = new Test();
+    this.stage.filters = [this.f];
+    this.f.uniforms.resolution = [this.width, this.height];
     this.animate();
   }
 
@@ -49,7 +49,7 @@ export default class Canvas {
 
     //マウスの位置をシェーダーに渡す。
     let point = this.renderer.plugins.interaction.mouse.global;
-    // this.f.uniforms.mouse = [point.x, point.y];
+    this.f.uniforms.mouse = [point.x, point.y];
 
     requestAnimationFrame(this.animate.bind(this)); 
   }
