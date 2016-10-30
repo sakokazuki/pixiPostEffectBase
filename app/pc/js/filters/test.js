@@ -1,6 +1,6 @@
 let f = require('./test.glsl')();
 
-class Test extends PIXI.AbstractFilter {
+class Test extends PIXI.Filter {
   constructor() {
     let uniforms = {
       map: {type: 'sampler2D', value: PIXI.Texture.fromImage('../img/light.png')},
