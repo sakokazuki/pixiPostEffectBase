@@ -1,0 +1,26 @@
+extends ../partials/head.jade
+
+block vars
+  - var title = text.meta.title
+
+block style
+  link( rel="stylesheet" type="text/css" href="../css/page.css")
+  link(href="../img/favicon.ico" rel="icon" type="image/vnd.microsoft.icon")
+
+block script
+  script(src="../../js/jquery.min.js")
+  script(src="../js/main.js")
+
+block content
+  - var asset = "./img/"
+  section.firstview#firstview
+    +firstview
+  section.footer#footer
+    +footer
+
+mixin firstview
+  .hoge
+
+mixin footer
+  .hoge
+  

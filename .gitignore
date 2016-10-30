@@ -1,0 +1,34 @@
+# node modules
+**/node_modules
+**/bower_components
+**/dist
+**/build
+
+# Ignore .DS_store file
+.DS_Store
+.tmp
+
+*.psd
+npm-debug.log
+**/public
+
+# vim
+*.swp
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+
+diff.txt
+diff/

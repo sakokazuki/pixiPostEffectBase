@@ -1,0 +1,22 @@
+RewriteEngine On
+
+#ループ防止
+RewriteCond %{REQUEST_URI} ^/sp/
+RewriteRule .* - [L]
+
+RewriteCond %{REQUEST_URI} /(css|js|fonts|img|pdf)/
+RewriteRule ^(.*)$ $1 [L]
+RewriteBase /desmostylus
+
+# リクエストしたURLに /sp/ が含まれず
+RewriteCond %{REQUEST_URI} !/sp/
+# かつ、ユーザーエージェントにiPhone、Android等が含まれる場合
+RewriteCond %{HTTP_USER_AGENT} (iPod|iPhone|Android|Windows\ Phone)
+RewriteRule ^(.*)$ sp/$1 [R]
+RewriteBase /desmostylus
+
+RewriteCond %{REQUEST_URI} /sp/
+RewriteCond %{HTTP_USER_AGENT} !(iPod|iPhone|Android|Windows\ Phone)
+RewriteRule ^sp/(.*)$ $1 [R]
+RewriteRule ^sp/sp(.*)$ sp/$1 [R]
+RewriteBase /1
