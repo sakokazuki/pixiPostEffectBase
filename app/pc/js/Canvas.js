@@ -10,7 +10,6 @@ export default class Canvas {
 
     this.stage = new PIXI.Container();
     PIXI.loader
-      .add('../img/light.png')
       .add('../img/black.png')
       .load(this.loadComplete.bind(this))
   }
@@ -31,11 +30,6 @@ export default class Canvas {
       this.bg.height = h;
     }
 
-    this.endOpAnim = false;
-    if(window.pageYOffset > 800) this.endOpAnim = true;
-    setTimeout( ()=>{
-      this.endOpAnim = true;
-    }, 3500);
 
     this.bg = PIXI.Sprite.fromImage('../img/bg.jpg');
     this.bg.width = this.width;
